@@ -3,11 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Teachable Machine Image Model</title>
+    <!-- ✅ ここを追加 -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.9.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
-    <style>
-      body { font-family: sans-serif; text-align: center; padding: 30px; }
-      video { width: 200px; height: 200px; }
-    </style>
   </head>
   <body>
     <h1>画像認識：Teachable Machine</h1>
@@ -15,8 +13,7 @@
     <div>認識結果：<span id="result">-</span></div>
 
     <script type="text/javascript">
-      // GitHub Pages にアップしたモデルのURL（末尾 / 必須）
-      const URL = "https://image-1630.github.io/tm-model/";
+      const URL = "./";
 
       let model, webcam, labelContainer, maxPredictions;
 
@@ -45,7 +42,6 @@
         const best = prediction.reduce((a, b) => (a.probability > b.probability ? a : b));
         labelContainer.innerText = best.className;
 
-        // App Inventor などで受け取る場合
         if (window.Android) {
           window.Android.setWebViewString(best.className);
         }
